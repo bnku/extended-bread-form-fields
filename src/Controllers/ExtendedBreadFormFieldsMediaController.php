@@ -4,6 +4,7 @@ namespace ExtendedBreadFormFields\Controllers;
 
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use TCG\Voyager\Facades\Voyager;
 use TCG\Voyager\Http\Controllers\VoyagerMediaController;
 
@@ -30,7 +31,9 @@ class ExtendedBreadFormFieldsMediaController extends VoyagerMediaController
                 $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
     
                 // Check permission
-                Voyager::canOrFail('delete_'.$dataType->name);
+	            $user = Auth::user();
+	            $user->hasPermission('delete_'.$dataType->name);
+                //Voyager::canOrFail('delete_'.$dataType->name);
     
                 // Load model and find record
                 $model = app($dataType->model_name);

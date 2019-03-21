@@ -27,6 +27,7 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function(){
+    var $image;
     $('.remove-multi-image-ext').on('click', function (e) {
         e.preventDefault();
         $image = $(this).parent().siblings('img');
@@ -42,6 +43,12 @@ document.addEventListener('DOMContentLoaded', function(){
 
         $('.confirm_delete_name').text($image.data('image'));
         $('#confirm_delete_modal').modal('show');
+    });
+
+    $('#confirm_delete').on('click', function(e){
+        $image.parent().fadeOut(300, function() { $(this).remove(); });
+        $image = null;
+        $('#confirm_delete_modal').modal('hide');
     });
     
     $('.show-inputs').on('click', function (e) {
