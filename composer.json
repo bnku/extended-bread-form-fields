@@ -1,7 +1,8 @@
 {
     "name": "extended-bread-form-fields",
     "description": "Extended FormFields hook interface to Voyager BREAD",
-    "tags": [
+    "minimum-stability": "dev",
+	"tags": [
         "voyager",
         "FormField",
         "key-value-json",
