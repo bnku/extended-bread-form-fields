@@ -15,7 +15,8 @@
         }
     ],
     "require": {
-        "larapack/hooks": "^1.0.5"
+        "larapack/hooks": "^1.0.5",
+        "appstract/laravel-blade-directives": "^1.4"
     },
     "autoload": {
         "psr-4": {
