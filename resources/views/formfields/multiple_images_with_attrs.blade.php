@@ -44,6 +44,21 @@ document.addEventListener('DOMContentLoaded', function(){
         $('#confirm_delete_modal').modal('show');
     });
     
+    $('#confirm_delete').on('click', function(){
+        $.post('{{ route('voyager.media.remove') }}', params, function (response) {
+            if ( response
+                && response.data
+                && response.data.status
+                && response.data.status == 200 ) {
+                toastr.success(response.data.message);
+                $image.parent().fadeOut(300, function() { $(this).remove(); })
+            } else {
+                toastr.error("Error removing image.");
+            }
+        });
+        $('#confirm_delete_modal').modal('hide');
+    });
+    
     $('.show-inputs').on('click', function (e) {
         e.preventDefault();
         $(this).parent().parent().children('.form-group').toggle();
