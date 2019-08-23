@@ -29,13 +29,13 @@
 document.addEventListener('DOMContentLoaded', function(){
     $('.remove-multi-image-ext').on('click', function (e) {
         e.preventDefault();
-        $image = $(this).parent().siblings('img');
+        $file = $(this).parent().siblings('img');
 
         params = {
             slug:         '{{ $dataType->slug }}',
-            image:        $image.data('image'),
-            id:           $image.data('id'),
-            field:        $image.parent().data('field-name'),
+            image:        $file.data('image'),
+            id:           $file.data('id'),
+            field:        $file.parent().data('field-name'),
             multiple_ext: true,
             _token:       '{{ csrf_token() }}'
         }
