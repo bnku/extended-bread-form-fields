@@ -30,7 +30,7 @@ class ExtendedBreadFormFieldsMediaController extends VoyagerMediaController
                 $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
     
                 // Check permission
-                Voyager::canOrFail('delete_'.$dataType->name);
+                $this->authorize('delete', app($dataType->model_name));
     
                 // Load model and find record
                 $model = app($dataType->model_name);
