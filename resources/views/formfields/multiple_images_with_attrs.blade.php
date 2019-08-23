@@ -29,19 +29,34 @@
 document.addEventListener('DOMContentLoaded', function(){
     $('.remove-multi-image-ext').on('click', function (e) {
         e.preventDefault();
-        $file = $(this).parent().siblings('img');
+        $image = $(this).parent().siblings('img');
 
         params = {
             slug:         '{{ $dataType->slug }}',
-            image:        $file.data('image'),
-            id:           $file.data('id'),
-            field:        $file.parent().data('field-name'),
+            image:        $image.data('image'),
+            id:           $image.data('id'),
+            field:        $image.parent().data('field-name'),
             multiple_ext: true,
             _token:       '{{ csrf_token() }}'
         }
 
         $('.confirm_delete_name').text($image.data('image'));
         $('#confirm_delete_modal').modal('show');
+    });
+    
+    $('#confirm_delete').on('click', function(){
+        $.post('{{ route('voyager.media.remove') }}', params, function (response) {
+            if ( response
+                && response.data
+                && response.data.status
+                && response.data.status == 200 ) {
+                toastr.success(response.data.message);
+                $image.parent().fadeOut(300, function() { $(this).remove(); })
+            } else {
+                toastr.error("Error removing image.");
+            }
+        });
+        $('#confirm_delete_modal').modal('hide');
     });
     
     $('.show-inputs').on('click', function (e) {
