@@ -77,7 +77,7 @@
     var buttons = document.querySelectorAll('.custom-parameters .old_btn');
     for (var i = 0; i < buttons.length; i++) buttons[i].onclick = removeRow;
     var suc_buttons = document.querySelectorAll('.custom-parameters .btn-success');
-    suc_buttons[suc_buttons.length - 1].onclick = addRow;
+    for (var j = 0; j < suc_buttons.length; j++) suc_buttons[j].onclick = addRow;
     
 </script>
 
