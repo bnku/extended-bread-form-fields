@@ -13,11 +13,15 @@ class KeyValueJsonContentType extends BaseType
         $value = $this->request->input($this->row->field);
 
         $new_parameters = array();
-        foreach ($value as $key => $val) {
-            if($value[$key]['key']){
-                $new_parameters[] = $value[$key];
+
+        if($value) {
+            foreach ($value as $key => $val) {
+                if($value[$key]['key']){
+                    $new_parameters[] = $value[$key];
+                }
             }
         }
+
         
         return json_encode($new_parameters);
     }

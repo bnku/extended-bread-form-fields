@@ -56,6 +56,7 @@ class ExtendedBreadFormFieldsController extends VoyagerBaseController
                 else $content = json_decode($content,1);
             
             if(isset($content)){
+                $end_content = [];
                 foreach ($content as $i => $value) {
                     if(isset($request->{$fieldName.'_ext'}[$i])){
                         $end_content[] = array_merge($content[$i], $request->{$fieldName.'_ext'}[$i]);
